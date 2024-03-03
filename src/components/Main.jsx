@@ -1,22 +1,19 @@
 import React from 'react'
 import { View, Text, } from 'react-native'
 import RepositoryList from './RepositoryList'
+import { Navigate, Route, Routes, } from 'react-router-native'
 import AppBar from './AppBar'
-import {  Route, Switch, Redirect } from 'react-router-native'
 
 const Main = () => {
 	return (
 		<View style={{flex: 1 }}>
 			<AppBar/>
-			<Switch>
-				<Route path='/' exact>
-					<RepositoryList />
+			<Routes>
+				<Route path='/'  element={<RepositoryList />} exact>
 				</Route>
-				<Route path='/signin' exact>
-					<Text>Working on it </Text>
-				</Route>
-				<Redirect to="/" />
-			</Switch>
+				<Route path='/signin' element={<Text>Working on it </Text>} exact></Route>
+				<Route path='*' element={<Navigate to='/' />} />
+			</Routes>
 		</View>
 	)
 }
